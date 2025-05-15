@@ -17,7 +17,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from typing import Final, Optional, Any, TextIO
+from typing import Final, Optional, Any
 from argparse import ArgumentParser, Namespace as ArgumentNamespace
 from subprocess import Popen
 from requests import Response
