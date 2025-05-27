@@ -218,7 +218,7 @@ def _main() -> None:
     first_hash: Final[str] = args.first_hash
     last_hash: Final[str] = args.last_hash
 
-    with open(_RECAP_PATH, 'w') as file:
+    with open(_RECAP_PATH, 'w', encoding="utf-8") as file:
         players_diff: Final[int] = _get_players_diff(first_hash, last_hash)
         print('Number Of New Players: ' + str(players_diff), file=sys.stdout)
         print('Number Of New Players: ' + str(players_diff), file=file)
@@ -239,6 +239,30 @@ def _main() -> None:
         for map_json in maps_json:
             map_id: int = int(map_json['id'])
             map_name: str = str(map_json['name'])
+
+            # map_tricks_json: Optional[Any] = _get_url_json(_BASE_URL + last_hash + '/trick-surf/games/1/maps/' + str(map_id) + '/tricks.min.json')
+            # if not map_tricks_json:
+            #     continue
+            #
+            # author_trick_count: dict[int, list[Any]] = {}
+            # for map_trick_json in map_tricks_json:
+            #     trick_author_id: Optional[Any] = map_trick_json['author_id']
+            #     if not trick_author_id:
+            #         continue
+            #
+            #     trick_author_id = int(trick_author_id)
+            #     trick_author_name = str(map_trick_json['author'])
+            #     if trick_author_id not in author_trick_count:
+            #         author_trick_count[trick_author_id] = [trick_author_name, 0]
+            #
+            #     author_trick_count[trick_author_id][1] += 1
+            #
+            # print('\n' + map_name, file=sys.stdout)
+            # print('\n' + map_name, file=file)
+            # for author_id, trick_count in sorted(author_trick_count.items(), key=lambda item: item[1][1], reverse=True):
+            #     print('-- ' + trick_count[0] + ': ' + str(trick_count[1]), file=sys.stdout)
+            #     print('-- ' + trick_count[0] + ': ' + str(trick_count[1]), file=file)
+
 
             triggers_diff: int = _get_triggers_diff(first_hash, last_hash, map_id)
             print('\n' + map_name + '\n-- Number Of New Triggers: ' + str(triggers_diff), file=sys.stdout)
